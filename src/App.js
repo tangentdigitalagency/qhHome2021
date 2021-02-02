@@ -23,6 +23,9 @@ import S11Final from "./components/S11Final";
 class App extends Component {
   state = {
     postData: {
+      lp_campaign_id:"5fe2370665025",
+      lp_campaign_key:"r7zWCbyvMYB4KF2wJq9t",
+      state:"NY",
       //extra entries
       Key: "rRkWg9.WrP.Ahm.Ic9hNr9kZruQMcRpNruwIc9tVxVpWrV4MgexMl8QKHpEE",
       TYPE: "34",
@@ -33,7 +36,6 @@ class App extends Component {
       Sub_ID: 101,
       Pub_ID: 102,
       TCPA_Consent: "Yes",
-      State: "",
       Occupancy: "Primary Residence",
       Garage: "Unknown",
       Foundation: "Unknown",
@@ -74,10 +76,10 @@ class App extends Component {
 
       //start 
       // form 1 field
-      //ownOrRent: "",
+      own_or_rent: "",
       // from script
-      Trusted_Form_URL: "",
-      LeadiD_Token: "",
+      trusted_form_cert_id: "",
+      jornaya_lead_id: "",
       //form 2 fields
       year_house_was_built: "",
       type_of_property: "",
@@ -85,10 +87,10 @@ class App extends Component {
       number_of_stories: "",
       size_in_square_feet: "",
       //form 4 fields
-      currently_insured: "Yes",
+      currently_insured: "No",
       current_insurance_company: "",
       //form 5 fields
-      Claims: "",
+      any_claims_over_last_3_years: "No",
       //howMany: "",
       //form 6 fields
       first_name: "",
@@ -108,19 +110,36 @@ class App extends Component {
       //end
 
     },
-  };
+};
+callMediaAlpha = () => {
+  // console.log("Hey how arew your")
+  window.MediaAlphaExchange = {
+    "data": {
+       "zip": "90210"
+    },
+    "placement_id": "3lYU7xIApFzLYwijXxsv88dhUoSiaA",
+    "sub_1": "test sub id",
+    "type": "ad_unit",
+    "version": 17
+ };
+   window.MediaAlphaExchange__load("target");
+ }
 
   componentDidUpdate = () => {
     //console.log(this.state);
   };
 
   handleChange = (v) => {
+    console.log(`this is: ${v}`)
     this.setState({
       postData: {
         ...this.state.postData,
         own_or_rent: v,
       },
-    });
+    },
+    
+    
+    );
   };
 
   handleChangeYear = (value) => {
@@ -179,7 +198,7 @@ class App extends Component {
     this.setState({
       postData: {
         ...this.state.postData,
-        Claims: value,
+        any_claims_over_last_3_years: value,
       },
     });
   };
@@ -313,18 +332,19 @@ class App extends Component {
                 <S1OwnOrRent
                   own_or_rent={this.state.postData.own_or_rent}
                   onChange={(v) => {
-                    this.handleChange(v);
+                    // this.handleChange(v);
                     this.setState({
                       postData: {
                         ...this.state.postData,
-                        LeadiD_Token: document.getElementById("leadid_token")
+                        own_or_rent:v,
+                        jornaya_lead_id: document.getElementById("jornaya_lead_id")
                           .value,
-                        Trusted_Form_URL: document.getElementById(
-                          "Trusted_Form_URL_0"
+                          trusted_form_cert_id: document.getElementById(
+                          "trusted_form_cert_id_0"
                         ).value,
                       },
                     });
-                    console.log(document.getElementById("Trusted_Form_URL_0"));
+                    console.log(document.getElementById("trusted_form_cert_id_0"));
                   }}
                 />
                 <S2HomeType
@@ -363,13 +383,25 @@ class App extends Component {
                   }}
                 />
                 <S5ClaimedAnything
+                  // claimedAnything={this.state.postData.any_claims_over_last_3_years}
+                  // howMany={this.state.postData.howMany}
+                  // onChange={(value, value1) => {
+                  //   if (value !== "") {
+                  //     //this.handleChangeHowMany(value);
+                  //   } else if (value1 !== "") {
+                  //     this.handleChangeClaims(value1);
+                  //   }
+                  // }}
+
                   claimedAnything={this.state.postData.claimedAnything}
                   howMany={this.state.postData.howMany}
                   onChange={(value, value1) => {
-                    if (value !== "") {
-                      //this.handleChangeHowMany(value);
-                    } else if (value1 !== "") {
-                      this.handleChangeClaims(value1);
+                    if(value == "Yes"){
+                      this.handleChangeClaims(value);
+                    }
+                     
+                   else  if (value1 !== "") {
+                      this.handleChangeHowMany(value1);
                     }
                   }}
                 />
@@ -418,7 +450,7 @@ class App extends Component {
                   }}
                 />
                 <S10Personalnfo
-                callMediaAlpha={this.callMediaAlpha}
+               callMediaAlpha={this.callMediaAlpha}
                 city={this.state.postData.city}
                   Credit={this.state.postData.Credit}
                   onChange={(e, value1) => {

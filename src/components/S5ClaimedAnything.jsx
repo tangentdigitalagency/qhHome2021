@@ -60,7 +60,7 @@ class S5ClaimedAnything extends Component {
                   offstyle="secondary"
                   style="ant-btn-lg ant-btn-block"
                   onChange={(value) => {
-                    this.props.onChange(value, "");
+                    this.props.onChange("Yes", "");
                   }}
                 />
               </Form.Item>

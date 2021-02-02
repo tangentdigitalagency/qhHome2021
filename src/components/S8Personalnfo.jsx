@@ -59,7 +59,7 @@ class S8Personalnfo extends Component {
               </Form.Item>
               <h5>Gender</h5>
               <Form.Item
-                name="Gender"
+                name="gender"
                 hasFeedback
                 rules={[
                   {

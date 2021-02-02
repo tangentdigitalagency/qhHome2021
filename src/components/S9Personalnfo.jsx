@@ -40,7 +40,7 @@ class S9Personalnfo extends Component {
               <br />
               <h5>Zip Code</h5>
               <Form.Item
-                name="Zip"
+                name="zip_code"
                 hasFeedback
                 rules={[
                   {
@@ -67,7 +67,7 @@ class S9Personalnfo extends Component {
               </Form.Item>
               <h5>Address</h5>
               <Form.Item
-                name="Address"
+                name="address"
                 hasFeedback
                 rules={[
                   {

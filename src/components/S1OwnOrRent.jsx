@@ -37,7 +37,7 @@ class S1OwnOrRent extends Component {
               <h3>Do You Own Or Rent</h3>
               <br />
               <Form.Item
-                name="ownOrRent"
+                name="own_or_rent"
                 hasFeedback
                 rules={[
                   {
@@ -51,8 +51,8 @@ class S1OwnOrRent extends Component {
                   onChange={(value) => this.props.onChange(value)}
                   size="large"
                 >
-                  <Option value="i-own">I Own</Option>
-                  <Option value="i-rent">I Rent</Option>
+                  <Option value="Own">I Own</Option>
+                  <Option value="Rent">I Rent</Option>
                 </Select>
               </Form.Item>
               <Form.Item>

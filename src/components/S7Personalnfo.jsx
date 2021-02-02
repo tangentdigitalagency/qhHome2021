@@ -33,7 +33,7 @@ class S7Personalnfo extends Component {
               onFinish={this.onFinish}
               initialValues={{
                 Phone: this.props.phone_home,
-                Email: this.props.Email
+                email_address: this.props.email_address
               }}
               onFinishFailed={this.onFinishFailed}
             >
@@ -41,7 +41,7 @@ class S7Personalnfo extends Component {
               <br />
               <h5>Phone Number</h5>
               <Form.Item
-                name="Phone"
+                name="phone_home"
                 hasFeedback
                 rules={[ 
                   {
@@ -69,8 +69,8 @@ class S7Personalnfo extends Component {
               </Form.Item>
               <h5>Email</h5>
               <Form.Item
-                value={this.props.Email}
-                name="Email"
+                value={this.props.email_address}
+                name="email_address"
                 hasFeedback
                 rules={[
                   {

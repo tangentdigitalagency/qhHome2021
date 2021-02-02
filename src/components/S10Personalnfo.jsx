@@ -9,7 +9,9 @@ class S10Personalnfo extends Component {
 
   onFinish = (values) => {
     console.log("Success:", values);
+    
     this.props.nextStep();
+    this.props.callMediaAlpha();
   };
 
   onFinishFailed = (errorInfo) => {
@@ -18,11 +20,12 @@ class S10Personalnfo extends Component {
 
   PostDataOfHomeInsurance = (object) => {
     console.log(object);
-    Axios.post("https://leads.quotehound.com/genericPostlead.php", null, {
+    Axios.post("https://quotehound.leadspediatrack.com/post.do", null, {
       params: object,
     })
       .then((res) => {  
         console.log(res.data);
+       
       })
       .catch((err) => {
         if (err) throw err;
@@ -32,11 +35,11 @@ class S10Personalnfo extends Component {
   render() {
     return (
       <div className="card shadow-lg" style={{ borderRadius: "25px" }}>
-        {/* <CommonComponents
+        <CommonComponents
           currentStep={this.props.currentStep}
           totalSteps={this.props.totalSteps}
           previousStep={this.props.previousStep}
-        /> */}
+        />
         <div className="d-flex" style={{ minHeight: "50vh" }}>
           <div
             className="card-body d-xl-flex justify-content-center align-items-center"
@@ -57,7 +60,7 @@ class S10Personalnfo extends Component {
               </Form.Item>
               <h5>City</h5>
               <Form.Item
-                name="City"
+                name="city"
                 hasFeedback
                 rules={[
                   {
@@ -71,7 +74,7 @@ class S10Personalnfo extends Component {
                 ]}
               >
                 <Input
-                  defaultValue={this.props.City}
+                  defaultValue={this.props.city}
                   onChange={(value) => {
                     this.props.onChange(value, "");
                   }}
@@ -81,7 +84,7 @@ class S10Personalnfo extends Component {
               </Form.Item>
               <h5>Credit Rating</h5>
               <Form.Item
-                name="Cradit"
+                name="Credit"
                 hasFeedback
                 rules={[
                   {
@@ -105,7 +108,24 @@ class S10Personalnfo extends Component {
               </Form.Item>
 
               <Form.Item>
-              
+                <p
+                  className="text-justify"
+                  style={{ color: "#777777", fontSize: "12px" }}
+                >
+                  By clicking "Get My Quote" I provide my electronic signature
+                  and express written consent to telemarketing calls, text
+                  messages, emails, and postal mail from this Web site our
+                  marketing and re-marketing network, and up to eight insurance
+                  companies or their affiliates or representatives at the phone
+                  number (including wireless number), email address, and postal
+                  address provided by me. I consent to calls and text messages
+                  transmitting insurance quotes, or seeking related additional
+                  information from me, using an Automatic Telephone Dialing
+                  System or prerecorded or artificial voices. I consent that my
+                  signature is not a condition of purchasing any property,
+                  goods, or services and that I may revoke my consent at any
+                  time.
+                </p>
               </Form.Item>
               <Form.Item>
                 <Button

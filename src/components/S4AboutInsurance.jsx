@@ -66,7 +66,7 @@ class S4AboutInsurance extends Component {
                   offstyle="secondary"
                   style=" ant-btn-lg ant-btn-block"
                   onChange={(value) => {
-                    this.props.onChange(value?'Yes':'No', "");
+                    this.props.onChange("Yes","");
                   }}
                 />
               </Form.Item>

@@ -21,7 +21,7 @@ class S3HouseSize extends Component {
 
   CreateNumberOfStoriesSelect = () => {
     const arr = [];
-    const storiesValues=['1','1 1/2','2','3','4','Bi-Level','Tri-Level'];
+    const storiesValues=['1','1.5','2','3','4','Bi-Level','Tri-Level'];
     for (let j = 0; j < storiesValues.length; j++) {
       arr.push(
         <Option className="p-0 text-center" key={storiesValues[j]} value={storiesValues[j]}>

@@ -24,14 +24,13 @@ class S2HomeType extends Component {
   CreateHomeTypeSelect = () => {
     let i = 0;
     const homeType = [
-      "Single Family ",
-      "Single Family Home",
-      "Duplex",
-      "Multi Family",
-      "Town Home",
-      "Condominium",
-      "Mobile Home",
       "Apartment ",
+      "Condominium",
+      "Duplex",
+      "Mobile Home",
+      "Multi Family",
+      "Single Family",
+      "Town Home",
     ];
     const arr = [];
     for (i = 0; i < homeType.length; i++) {
