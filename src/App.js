@@ -515,7 +515,7 @@ class App extends Component {
                         object={this.state.postData}
                       />
                     </Route>
-                    <Route path="/step11">
+                    <Route path="/thank-you">
                       <S11Final postData2={this.state.postData} />
                     </Route>
                   </Switch>

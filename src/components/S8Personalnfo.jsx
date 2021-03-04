@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Input } from "antd";
+import { Form, Button, Select, Input, Progress } from "antd";
 import CommonComponents from "./CommonComponents";
 import { withRouter } from "react-router-dom";
 const { Option } = Select;
@@ -33,6 +33,8 @@ class S8Personalnfo extends Component {
   render() {
     return (
       <div className="card shadow-lg" style={{ borderRadius: "25px" }}>
+                <Progress percent={72} status="active" showInfo={true} className="pbar" />
+
         {/* <CommonComponents
           currentStep={this.props.currentStep}
           totalSteps={this.props.totalSteps}
