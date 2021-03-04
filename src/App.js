@@ -5,7 +5,13 @@ import "antd/dist/antd.css";
 import "./App.css";
 import Grid from "@material-ui/core/Grid";
 import Logo from "./Assets/logoq.png";
-import {Button, Typography } from "antd";
+import { Button, Typography } from "antd";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter,
+} from "react-router-dom";
 
 import S1OwnOrRent from "./components/S1OwnOrRent";
 import S2HomeType from "./components/S2HomeType";
@@ -18,14 +24,14 @@ import S7Personalnfo from "./components/S7Personalnfo";
 import S8Personalnfo from "./components/S8Personalnfo";
 import S9Personalnfo from "./components/S9Personalnfo";
 import S10Personalnfo from "./components/S10Personalnfo";
-import {PhoneOutlined } from "@ant-design/icons"
+import { PhoneOutlined } from "@ant-design/icons";
 import S11Final from "./components/S11Final";
 class App extends Component {
   state = {
     postData: {
-      lp_campaign_id:"603435ae5cbe5",
-      lp_campaign_key:"RH4GxhDQ2LWCb7pXBZzK",
-      state:"NY",
+      lp_campaign_id: "603435ae5cbe5",
+      lp_campaign_key: "RH4GxhDQ2LWCb7pXBZzK",
+      state: "NY",
       //extra entries
       Key: "rRkWg9.WrP.Ahm.Ic9hNr9kZruQMcRpNruwIc9tVxVpWrV4MgexMl8QKHpEE",
       TYPE: "34",
@@ -64,17 +70,17 @@ class App extends Component {
       //Total_Premium:'',
       //Sold_Tier:'',
       //Quoted_Carrrier:'',
-      //Age:'', 
+      //Age:'',
       //Insured_Since:'',
       //Policy_Expiration:'',
       //Exterior_Walls:'',
       //Smoke_Alarm:'',
       //Indoor_Sprinklers:'',
-      //Central_Air_Conditioning:'',  
+      //Central_Air_Conditioning:'',
       //Years_At_Current_Residence:'',
       //Years_At_Previous_Residence:'',
 
-      //start 
+      //start
       // form 1 field
       own_or_rent: "",
       // from script
@@ -108,42 +114,42 @@ class App extends Component {
       city: "",
       Credit: "",
       //end
-
     },
-};
-callMediaAlpha = () => {
-  // console.log("Hey how arew your")
-  window.MediaAlphaExchange = {
-    "data": {
-       "zip": "90210"
-    },
-    "placement_id": "3lYU7xIApFzLYwijXxsv88dhUoSiaA",
-    "sub_1": "test sub id",
-    "type": "ad_unit",
-    "version": 17
- };
-   window.MediaAlphaExchange__load("target");
- }
+  };
+  callMediaAlpha = () => {
+    // console.log("Hey how arew your")
+    window.MediaAlphaExchange = {
+      data: {
+        zip: "90210",
+      },
+      placement_id: "3lYU7xIApFzLYwijXxsv88dhUoSiaA",
+      sub_1: "test sub id",
+      type: "ad_unit",
+      version: 17,
+    };
+    window.MediaAlphaExchange__load("target");
+  };
+  constructor(props) {
+    super(props);
+  }
 
   componentDidUpdate = () => {
     //console.log(this.state);
   };
-
+  componentDidMount() {
+    console.log("This is props", this.props);
+  }
   handleChange = (v) => {
-    console.log(`this is: ${v}`)
+    console.log(`this is: ${v}`);
     this.setState({
       postData: {
         ...this.state.postData,
         own_or_rent: v,
       },
-    },
-    
-    
-    );
+    });
   };
 
   handleChangeYear = (value) => {
-
     this.setState({
       postData: {
         ...this.state.postData,
@@ -302,33 +308,219 @@ callMediaAlpha = () => {
 
   render() {
     return (
-      <div
-        className="container-fluid"
-        style={{
-          minHeight: "100vh",
-          backgroundColor: "#f7f7f7",
-          overflow: "hidden",
-        }}
-      >
-        <nav class="navbar navbar-light "><div class="container">
-          <ul class="nav  nav-fill mx-2 w-sm-100">
-            <li class="nav-item">
-              <img src={Logo} class="mx-2 my-4" width="150px" alt="" />
-            </li>
-          </ul>
-          <ul class="nav  nav-fill mx-2 w-sm-100">
-            <li class="nav-item">
-              <Button type="primary" size="middle" icon={<PhoneOutlined rotate="90" />}  onClick={(e) => {e.preventDefault(); window.location.href='tel:8553382733'; }} >
-              (855) 338-2733
-              </Button>
-            </li>
-          </ul>
-        </div>
-        </nav>
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <StepWizard initialStep={1}>
+      <React.Fragment>
+        <div
+          className="container-fluid"
+          style={{
+            minHeight: "100vh",
+            backgroundColor: "#f7f7f7",
+            overflow: "hidden",
+          }}
+        >
+          <nav class="navbar navbar-light ">
+            <div class="container">
+              <ul class="nav  nav-fill mx-2 w-sm-100">
+                <li class="nav-item">
+                  <img src={Logo} class="mx-2 my-4" width="150px" alt="" />
+                </li>
+              </ul>
+              <ul class="nav  nav-fill mx-2 w-sm-100">
+                <li class="nav-item">
+                  <Button
+                    type="primary"
+                    size="middle"
+                    icon={<PhoneOutlined rotate="90" />}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = "tel:8553382733";
+                    }}
+                  >
+                    (855) 338-2733
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <Router>
+                  <Switch>
+                    <Route exact path="/">
+                      <S1OwnOrRent
+                        own_or_rent={this.state.postData.own_or_rent}
+                        onChange={(v) => {
+                          // this.handleChange(v);
+                          this.setState({
+                            postData: {
+                              ...this.state.postData,
+                              own_or_rent: v,
+                              jornaya_lead_id: document.getElementById(
+                                "jornaya_lead_id"
+                              ).value
+                                ? document.getElementById("jornaya_lead_id")
+                                    .value
+                                : null,
+                              trusted_form_cert_id: document.getElementById(
+                                "trusted_form_cert_id_0"
+                              )
+                                ? document.getElementById(
+                                    "trusted_form_cert_id_0"
+                                  ).value
+                                : null,
+                            },
+                          });
+                          console.log(
+                            document.getElementById("trusted_form_cert_id_0")
+                          );
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step2">
+                      <S2HomeType
+                        year_house_was_built={
+                          this.state.postData.year_house_was_built
+                        }
+                        type_of_property={this.state.postData.type_of_property}
+                        onChange={(value, value1) => {
+                          if (value !== "") {
+                            this.handleChangeYear(value);
+                          } else if (value1 !== "") {
+                            this.handleChangeType(value1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step3">
+                      <S3HouseSize
+                        size_in_square_feet={
+                          this.state.postData.size_in_square_feet
+                        }
+                        number_of_stories={
+                          this.state.postData.number_of_stories
+                        }
+                        onChange={(value, value1) => {
+                          if (value !== "") {
+                            this.handleChangeStories(value);
+                          } else if (value1 !== "") {
+                            this.handleChangeSize(value1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step4">
+                      <S4AboutInsurance
+                        currently_insured={
+                          this.state.postData.currently_insured
+                        }
+                        current_insurance_company={
+                          this.state.postData.current_insurance_company
+                        }
+                        onChange={(value, value1) => {
+                          if (value !== "") {
+                            this.handleChangeInsured(value);
+                          } else if (value1 !== "") {
+                            this.handleChangeCompany(value1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step5">
+                      <S5ClaimedAnything
+                        // claimedAnything={this.state.postData.any_claims_over_last_3_years}
+                        // howMany={this.state.postData.howMany}
+                        // onChange={(value, value1) => {
+                        //   if (value !== "") {
+                        //     //this.handleChangeHowMany(value);
+                        //   } else if (value1 !== "") {
+                        //     this.handleChangeClaims(value1);
+                        //   }
+                        // }}
+
+                        claimedAnything={this.state.postData.claimedAnything}
+                        howMany={this.state.postData.howMany}
+                        onChange={(value, value1) => {
+                          if (value == "Yes") {
+                            this.handleChangeClaims(value);
+                          } else if (value1 !== "") {
+                            this.handleChangeHowMany(value1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step6">
+                      <S6Personalnfo
+                        first_name={this.state.postData.first_name}
+                        last_name={this.state.postData.last_name}
+                        onChange={(e, e1) => {
+                          if (e !== "") {
+                            this.handleChangeFirst_Name(e);
+                          } else if (e1 !== "") {
+                            this.handleChangeLast_Name(e1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step7">
+                      <S7Personalnfo
+                        phone_home={this.state.postData.phone_home}
+                        email_address={this.state.postData.email_address}
+                        onChange={(e, e1) => {
+                          if (e !== "") {
+                            this.handleChangePrimary_Phone(e);
+                          } else if (e1 !== "") {
+                            this.handleChangeEmail(e1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step8">
+                      <S8Personalnfo
+                        dob={this.state.postData.dob}
+                        gender={this.state.postData.gender}
+                        onChange={(e, value1) => {
+                          if (e !== "") {
+                            this.handleChangeDOB(e);
+                          } else if (value1 !== "") {
+                            this.handleChangeGender(value1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step9">
+                      <S9Personalnfo
+                        zip_code={this.state.postData.zip_code}
+                        address={this.state.postData.address}
+                        onChange={(e, e1) => {
+                          if (e !== "") {
+                            this.handleChangeZip(e);
+                          } else if (e1 !== "") {
+                            this.handleChangeAddress(e1);
+                          }
+                        }}
+                      />
+                    </Route>
+                    <Route path="/step10">
+                      <S10Personalnfo
+                        callMediaAlpha={this.callMediaAlpha}
+                        city={this.state.postData.city}
+                        Credit={this.state.postData.Credit}
+                        onChange={(e, value1) => {
+                          if (e !== "") {
+                            this.handleChangeCity(e);
+                          } else if (value1 !== "") {
+                            this.handleChangeCredit(value1);
+                          }
+                        }}
+                        object={this.state.postData}
+                      />
+                    </Route>
+                    <Route path="/step11">
+                      <S11Final postData2={this.state.postData} />
+                    </Route>
+                  </Switch>
+                </Router>
+                {/* <StepWizard initialStep={1}>
                 <S1OwnOrRent
                   own_or_rent={this.state.postData.own_or_rent}
                   onChange={(v) => {
@@ -463,147 +655,148 @@ callMediaAlpha = () => {
                   object={this.state.postData}
                 />
                 <S11Final postData2={this.state.postData}/>
-              </StepWizard>
+              </StepWizard> */}
+              </div>
             </div>
           </div>
-        </div>
 
-        <Grid
-          container
-          xs={12}
-          align="center"
-          style={{ justifyContent: "center" }}
-        >
-          <Grid container xs={8} style={{ justifyContent: "center" }}>
-            <Grid item xs={12}>
-              <Typography style={{ fontWeight: 700, lineHeight: 1.5 }}>
-                Providers Include:
-              </Typography>
-            </Grid>
-            <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
-              <img
-                width="80%"
-                height="auto"
-                object-fit="fit"
-                alt="missing"
-                src={require("./Assets/1.png")}
-              />
-            </Grid>
-            <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
-              <img
-                width="80%"
-                height="auto"
-                object-fit="fit"
-                alt="missing"
-                src={require("./Assets/2.png")}
-              />
-            </Grid>
-            <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
-              <img
-                width="80%"
-                height="auto"
-                object-fit="fit"
-                alt="missing"
-                src={require("./Assets/3.png")}
-              />
-            </Grid>
-            <Grid item lg={2} xs={12} style={{ marginTop: "0rem" }}>
-              <img
-                width="80%"
-                height="auto"
-                alt="missing"
-                src={require("./Assets/4.png")}
-              />
-            </Grid>
-            <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
-              <img
-                width="80%"
-                height="auto"
-                object-fit="fit"
-                alt="missing"
-                src={require("./Assets/5.png")}
-              />
-            </Grid>
-          </Grid>
           <Grid
             container
-            xs={10}
-            style={{ paddingBottom: "1rem", marginTop: "1rem" }}
+            xs={12}
+            align="center"
+            style={{ justifyContent: "center" }}
           >
-            <Grid item lg={3} xs={12} style={{ alignSelf: "flex-end" }}>
-              <Typography
-                style={{ fontSize: "15px", color: "rgb(166, 166, 166)" }}
-              >
-                @ 2020 Quantum Assurance
-              </Typography>
-            </Grid>
-            <Grid item lg={6} xs={0} />
-            <Grid container lg={3} xs={12}>
-              <Grid
-                item
-                lg={4}
-                xs={12}
-                style={{ alignSelf: "center", marginTop: "1rem" }}
-              >
-                <Typography
-                  style={{
-                    fontSize: "15px",
-                    color: "rgb(166, 166, 166)",
-                    fontWeight: 600,
-                  }}
-                >
-                  <a
-                    href="https://quantumassurance.com/"
-                    style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
-                  >
-                    Visit Us
-                  </a>
+            <Grid container xs={8} style={{ justifyContent: "center" }}>
+              <Grid item xs={12}>
+                <Typography style={{ fontWeight: 700, lineHeight: 1.5 }}>
+                  Providers Include:
                 </Typography>
               </Grid>
-              <Grid
-                item
-                lg={4}
-                xs={12}
-                style={{ alignSelf: "center", marginTop: "1rem" }}
-              >
+              <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
+                <img
+                  width="80%"
+                  height="auto"
+                  object-fit="fit"
+                  alt="missing"
+                  src={require("./Assets/1.png")}
+                />
+              </Grid>
+              <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
+                <img
+                  width="80%"
+                  height="auto"
+                  object-fit="fit"
+                  alt="missing"
+                  src={require("./Assets/2.png")}
+                />
+              </Grid>
+              <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
+                <img
+                  width="80%"
+                  height="auto"
+                  object-fit="fit"
+                  alt="missing"
+                  src={require("./Assets/3.png")}
+                />
+              </Grid>
+              <Grid item lg={2} xs={12} style={{ marginTop: "0rem" }}>
+                <img
+                  width="80%"
+                  height="auto"
+                  alt="missing"
+                  src={require("./Assets/4.png")}
+                />
+              </Grid>
+              <Grid item lg={2} xs={12} style={{ marginTop: "1rem" }}>
+                <img
+                  width="80%"
+                  height="auto"
+                  object-fit="fit"
+                  alt="missing"
+                  src={require("./Assets/5.png")}
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              xs={10}
+              style={{ paddingBottom: "1rem", marginTop: "1rem" }}
+            >
+              <Grid item lg={3} xs={12} style={{ alignSelf: "flex-end" }}>
                 <Typography
                   style={{ fontSize: "15px", color: "rgb(166, 166, 166)" }}
                 >
-                  <a
-                    href="https://quantumassurance.com/privacy-policy"
-                    style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
-                  >
-                    Privacy Policy
-                  </a>
+                  @ 2020 Quantum Assurance
                 </Typography>
               </Grid>
-              <Grid
-                item
-                lg={4}
-                xs={12}
-                style={{ alignSelf: "center", marginTop: "1rem" }}
-              >
-                <Typography
-                  style={{
-                    fontSize: "15px",
-                    color: "rgb(166, 166, 166)",
-                    fontWeight: 600,
-                  }}
+              <Grid item lg={6} xs={0} />
+              <Grid container lg={3} xs={12}>
+                <Grid
+                  item
+                  lg={4}
+                  xs={12}
+                  style={{ alignSelf: "center", marginTop: "1rem" }}
                 >
-                  <a
-                    href="https://quantumassurance.com/terms-conditions"
-                    style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
+                  <Typography
+                    style={{
+                      fontSize: "15px",
+                      color: "rgb(166, 166, 166)",
+                      fontWeight: 600,
+                    }}
                   >
-                    Terms & Conditions
-                  </a>
-                </Typography>
+                    <a
+                      href="https://quantumassurance.com/"
+                      style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
+                    >
+                      Visit Us
+                    </a>
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  lg={4}
+                  xs={12}
+                  style={{ alignSelf: "center", marginTop: "1rem" }}
+                >
+                  <Typography
+                    style={{ fontSize: "15px", color: "rgb(166, 166, 166)" }}
+                  >
+                    <a
+                      href="https://quantumassurance.com/privacy-policy"
+                      style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
+                    >
+                      Privacy Policy
+                    </a>
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  lg={4}
+                  xs={12}
+                  style={{ alignSelf: "center", marginTop: "1rem" }}
+                >
+                  <Typography
+                    style={{
+                      fontSize: "15px",
+                      color: "rgb(166, 166, 166)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <a
+                      href="https://quantumassurance.com/terms-conditions"
+                      style={{ color: "rgb(166,166,166)", fontWeight: "400" }}
+                    >
+                      Terms & Conditions
+                    </a>
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

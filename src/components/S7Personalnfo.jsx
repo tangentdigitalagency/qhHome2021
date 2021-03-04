@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 
 class S7Personalnfo extends Component {
   state = {};
 
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step8");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -33,7 +35,7 @@ class S7Personalnfo extends Component {
               onFinish={this.onFinish}
               initialValues={{
                 Phone: this.props.phone_home,
-                email_address: this.props.email_address
+                email_address: this.props.email_address,
               }}
               onFinishFailed={this.onFinishFailed}
             >
@@ -43,7 +45,7 @@ class S7Personalnfo extends Component {
               <Form.Item
                 name="phone_home"
                 hasFeedback
-                rules={[ 
+                rules={[
                   {
                     required: true,
                     message: "Please Enter Your phone number !",
@@ -51,13 +53,14 @@ class S7Personalnfo extends Component {
                   {
                     max: 10,
                     message: "Please Enter A Correct Phone Number",
-                  },{
+                  },
+                  {
                     min: 10,
                     message: "Please Enter A Correct Phone Number",
-                  }
+                  },
                 ]}
               >
-                <Input 
+                <Input
                   defaultValue={this.props.phone_home}
                   type="number"
                   onChange={(value) => {
@@ -94,15 +97,29 @@ class S7Personalnfo extends Component {
               </Form.Item>
 
               <p className="tcpa">
-                          By hitting <b> Next </b> below, I provide my express written consent to the following. Telemarketing calls, text messages, emails, and postal mail from this Web site, our <a href="https://www.quotehound.com/partners">marketing </a> and re-marketing network, and up to eight insurance companies or their affiliates  or representatives at the phone number (including wireless number), email address, and postal address provided by me. Telemarketing calls, text messages, emails, and postal mail (including wireless number), email address, and postal address provided by me. Calls and text messages transmitting insurance quotes, or seeking related additional information from me, using an Automated Telephone Dialing System or prerecorded or artificial voices. Electronic video monitoring and recordation of my activities on this Site; and I acknowledge that I may revoke my consent at any time by Calling
-                      <a href="tel:1883161350">1 888-316-1350 </a> or emailing
-                      “STOP” to
-                      <a href="mailto:optout@quotehound.com">
-                            {" "}
-                        optout@quotehound.com
-                      </a>
-                      .<b>I AGREE TO ALL OF THE ABOVE AND SEND MY QUOTE</b>
-                        </p>
+                By hitting <b> Next </b> below, I provide my express written
+                consent to the following. Telemarketing calls, text messages,
+                emails, and postal mail from this Web site, our{" "}
+                <a href="https://www.quotehound.com/partners">marketing </a> and
+                re-marketing network, and up to eight insurance companies or
+                their affiliates or representatives at the phone number
+                (including wireless number), email address, and postal address
+                provided by me. Telemarketing calls, text messages, emails, and
+                postal mail (including wireless number), email address, and
+                postal address provided by me. Calls and text messages
+                transmitting insurance quotes, or seeking related additional
+                information from me, using an Automated Telephone Dialing System
+                or prerecorded or artificial voices. Electronic video monitoring
+                and recordation of my activities on this Site; and I acknowledge
+                that I may revoke my consent at any time by Calling
+                <a href="tel:1883161350">1 888-316-1350 </a> or emailing “STOP”
+                to
+                <a href="mailto:optout@quotehound.com">
+                  {" "}
+                  optout@quotehound.com
+                </a>
+                .<b>I AGREE TO ALL OF THE ABOVE AND SEND MY QUOTE</b>
+              </p>
               <Form.Item>
                 <Button type="primary" htmlType="submit" block size="large">
                   Next
@@ -116,4 +133,4 @@ class S7Personalnfo extends Component {
   }
 }
 
-export default S7Personalnfo;
+export default withRouter(S7Personalnfo);

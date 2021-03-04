@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Form, Input, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
-import Axios from "axios";  
+import Axios from "axios";
+import { withRouter } from "react-router-dom";
 const { Option } = Select;
 
 class S10Personalnfo extends Component {
@@ -9,9 +10,10 @@ class S10Personalnfo extends Component {
 
   onFinish = (values) => {
     console.log("Success:", values);
-    
-    this.props.nextStep();
+
+    // this.props.nextStep();
     this.props.callMediaAlpha();
+    this.props.history.push("/step11");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -23,9 +25,8 @@ class S10Personalnfo extends Component {
     Axios.post("https://quotehound.leadspediatrack.com/post.do", null, {
       params: object,
     })
-      .then((res) => {  
+      .then((res) => {
         console.log(res.data);
-       
       })
       .catch((err) => {
         if (err) throw err;
@@ -50,7 +51,7 @@ class S10Personalnfo extends Component {
               className="mywidth"
               onFinish={this.onFinish}
               initialValues={{
-                city : this.props.city
+                city: this.props.city,
               }}
               onFinishFailed={this.onFinishFailed}
             >
@@ -133,10 +134,9 @@ class S10Personalnfo extends Component {
                   htmlType="submit"
                   block
                   size="large"
-                  onClick={() =>{
+                  onClick={() => {
                     this.PostDataOfHomeInsurance(this.props.object);
-                    }
-                  }
+                  }}
                 >
                   Get My Quote!
                 </Button>
@@ -149,4 +149,4 @@ class S10Personalnfo extends Component {
   }
 }
 
-export default S10Personalnfo;
+export default withRouter(S10Personalnfo);

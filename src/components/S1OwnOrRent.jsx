@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Form, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 const { Option } = Select;
 
 class S1OwnOrRent extends Component {
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    this.props.history.push("/step2");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -27,13 +28,13 @@ class S1OwnOrRent extends Component {
             className="card-body d-xl-flex justify-content-center align-items-center"
             align="center"
           >
-           <Form
+            <Form
               name="basic"
               className="mywidth"
               onFinish={this.onFinish}
               onFinishFailed={this.onFinishFailed}
             >
-               <h1> Start Saving On Homeowners Insurance Today!</h1>
+              <h1> Start Saving On Homeowners Insurance Today!</h1>
               <h3>Do You Own Or Rent</h3>
               <br />
               <Form.Item
@@ -68,4 +69,4 @@ class S1OwnOrRent extends Component {
   }
 }
 
-export default S1OwnOrRent;
+export default withRouter(S1OwnOrRent);

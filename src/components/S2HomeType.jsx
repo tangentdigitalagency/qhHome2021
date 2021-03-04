@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 const { Option } = Select;
 class S2HomeType extends Component {
   state = {
@@ -44,8 +45,9 @@ class S2HomeType extends Component {
   };
 
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step3");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -54,7 +56,7 @@ class S2HomeType extends Component {
 
   render() {
     return (
-      <div className="card shadow-lg" style={{ borderRadius: "25px"}}>
+      <div className="card shadow-lg" style={{ borderRadius: "25px" }}>
         {/* <CommonComponents
           currentStep={this.props.currentStep}
           totalSteps={this.props.totalSteps}
@@ -85,7 +87,6 @@ class S2HomeType extends Component {
                 ]}
               >
                 <Select
-                
                   //defaultValue={this.props.year_house_was_built}
                   size="large"
                   placeholder="House Built Years"
@@ -141,4 +142,4 @@ class S2HomeType extends Component {
   }
 }
 
-export default S2HomeType;
+export default withRouter(S2HomeType);

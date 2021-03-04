@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 
-class S6Personalnfo extends Component { 
-  
-
+class S6Personalnfo extends Component {
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step7");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -33,7 +33,7 @@ class S6Personalnfo extends Component {
               onFinish={this.onFinish}
               initialValues={{
                 first_name: this.props.first_name,
-                last_name: this.props.last_name
+                last_name: this.props.last_name,
               }}
               onFinishFailed={this.onFinishFailed}
             >
@@ -49,11 +49,12 @@ class S6Personalnfo extends Component {
                     message: "Please Enter Your First Name",
                   },
                   {
-                      max:100, message:'Max Length Of First Name Is 100 Characters'
-                  }
+                    max: 100,
+                    message: "Max Length Of First Name Is 100 Characters",
+                  },
                 ]}
               >
-                <Input  
+                <Input
                   onChange={(e) => {
                     this.props.onChange(e, "");
                   }}
@@ -71,11 +72,12 @@ class S6Personalnfo extends Component {
                     message: "Please Enter Your Last Name",
                   },
                   {
-                    max:100, message:'Max Length Of Last Name Is 100 Characters'
-                }
+                    max: 100,
+                    message: "Max Length Of Last Name Is 100 Characters",
+                  },
                 ]}
               >
-                <Input 
+                <Input
                   onChange={(e) => {
                     this.props.onChange("", e);
                   }}
@@ -96,4 +98,4 @@ class S6Personalnfo extends Component {
   }
 }
 
-export default S6Personalnfo;
+export default withRouter(S6Personalnfo);

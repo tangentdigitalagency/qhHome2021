@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 
 class S9Personalnfo extends Component {
   state = {};
 
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step10");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -32,7 +34,7 @@ class S9Personalnfo extends Component {
               onFinish={this.onFinish}
               initialValues={{
                 zip_code: this.props.zip_code,
-                address: this.props.address
+                address: this.props.address,
               }}
               onFinishFailed={this.onFinishFailed}
             >
@@ -57,7 +59,7 @@ class S9Personalnfo extends Component {
                   },
                 ]}
               >
-                <Input  
+                <Input
                   onChange={(value) => {
                     this.props.onChange(value, "");
                   }}
@@ -80,7 +82,7 @@ class S9Personalnfo extends Component {
                   },
                 ]}
               >
-                <Input 
+                <Input
                   onChange={(value) => {
                     this.props.onChange("", value);
                   }}
@@ -101,4 +103,4 @@ class S9Personalnfo extends Component {
   }
 }
 
-export default S9Personalnfo;
+export default withRouter(S9Personalnfo);

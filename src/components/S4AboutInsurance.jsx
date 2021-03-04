@@ -3,14 +3,14 @@ import { Form, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import CompanyNameList from "../CompanyNameList";
+import { withRouter } from "react-router-dom";
+
 const { Option } = Select;
 
 class S4AboutInsurance extends Component {
-  state = {};
-
   CreateCompanyNameSelect = () => {
     let i = 0;
-   const companyName = CompanyNameList;
+    const companyName = CompanyNameList;
     const arr = [];
     for (i = 0; i < companyName.length; i++) {
       arr.push(
@@ -27,8 +27,9 @@ class S4AboutInsurance extends Component {
   };
 
   onFinish = (values) => {
-    this.props.nextStep();
+    // this.props.nextStep();
     console.log("Success:", values);
+    this.props.history.push("/step5");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -66,7 +67,7 @@ class S4AboutInsurance extends Component {
                   offstyle="secondary"
                   style=" ant-btn-lg ant-btn-block"
                   onChange={(value) => {
-                    this.props.onChange("Yes","");
+                    this.props.onChange("Yes", "");
                   }}
                 />
               </Form.Item>
@@ -110,4 +111,4 @@ class S4AboutInsurance extends Component {
   }
 }
 
-export default S4AboutInsurance;
+export default withRouter(S4AboutInsurance);

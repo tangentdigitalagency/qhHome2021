@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Form, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
+import { withRouter } from "react-router-dom";
 const { Option } = Select;
 class S3HouseSize extends Component {
   state = {};
 
   CreateHomeSizeSelect = () => {
     let i = 0;
-    
+
     const arr = [];
     for (i = 500; i <= 5200; i += 100) {
       arr.push(
@@ -21,10 +22,14 @@ class S3HouseSize extends Component {
 
   CreateNumberOfStoriesSelect = () => {
     const arr = [];
-    const storiesValues=['1','1.5','2','3','4','Bi-Level','Tri-Level'];
+    const storiesValues = ["1", "1.5", "2", "3", "4", "Bi-Level", "Tri-Level"];
     for (let j = 0; j < storiesValues.length; j++) {
       arr.push(
-        <Option className="p-0 text-center" key={storiesValues[j]} value={storiesValues[j]}>
+        <Option
+          className="p-0 text-center"
+          key={storiesValues[j]}
+          value={storiesValues[j]}
+        >
           {storiesValues[j]}
         </Option>
       );
@@ -33,8 +38,9 @@ class S3HouseSize extends Component {
   };
 
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step4");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -74,7 +80,7 @@ class S3HouseSize extends Component {
                 ]}
               >
                 <Select
-                //defaultValue={this.props.Stories}
+                  //defaultValue={this.props.Stories}
                   size="large"
                   placeholder="Number Of Stories"
                   onChange={(value) => {
@@ -122,4 +128,4 @@ class S3HouseSize extends Component {
   }
 }
 
-export default S3HouseSize;
+export default withRouter(S3HouseSize);

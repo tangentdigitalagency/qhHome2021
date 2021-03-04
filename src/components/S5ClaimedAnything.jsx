@@ -2,17 +2,23 @@ import React, { Component } from "react";
 import { Form, Select, Button } from "antd";
 import CommonComponents from "./CommonComponents";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import { withRouter } from "react-router-dom";
+
 const { Option } = Select;
 class S5ClaimedAnything extends Component {
   state = {};
 
   CreateHowManySelect = () => {
     let i = 0;
-    const claimsValues=['None','1','2','3','4','5','6+','Unknown'];
+    const claimsValues = ["None", "1", "2", "3", "4", "5", "6+", "Unknown"];
     const arr = [];
     for (i = 0; i < claimsValues.length; i++) {
       arr.push(
-        <Option className="p-0 text-center" key={claimsValues[i]} value={claimsValues[i]}>
+        <Option
+          className="p-0 text-center"
+          key={claimsValues[i]}
+          value={claimsValues[i]}
+        >
           {claimsValues[i]}
         </Option>
       );
@@ -21,8 +27,9 @@ class S5ClaimedAnything extends Component {
   };
 
   onFinish = (values) => {
-    this.props.nextStep();
-    console.log("Success:", values);
+    // this.props.nextStep();
+    // console.log("Success:", values);
+    this.props.history.push("/step6");
   };
 
   onFinishFailed = (errorInfo) => {
@@ -103,4 +110,4 @@ class S5ClaimedAnything extends Component {
   }
 }
 
-export default S5ClaimedAnything;
+export default withRouter(S5ClaimedAnything);
