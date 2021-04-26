@@ -34,7 +34,7 @@ class S1OwnOrRent extends Component {
               onFinish={this.onFinish}
               onFinishFailed={this.onFinishFailed}
             >
-              <h1> Start Saving On Homeowners Insurance Today!</h1>
+              <h1> Get your free quote!</h1>
               <h3>Do You Own Or Rent</h3>
               <br />
               <Form.Item
