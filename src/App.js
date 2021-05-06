@@ -33,14 +33,11 @@ class App extends Component {
       lp_campaign_key: "RH4GxhDQ2LWCb7pXBZzK",
       state: "NY",
       //extra entries
-      Key: "rRkWg9.WrP.Ahm.Ic9hNr9kZruQMcRpNruwIc9tVxVpWrV4MgexMl8QKHpEE",
-      TYPE: "34",
-      SRC: "Quantum_Website_Home",
       //SRC:"test",
       Landing_Page: "quantumassurance.com",
       IP_Address: "",
-      Sub_ID: 101,
-      Pub_ID: 102,
+      lp_s1: 101,
+      lp_s2: 102,
       TCPA_Consent: "Yes",
       Occupancy: "Primary Residence",
       Garage: "Unknown",
@@ -336,7 +333,7 @@ class App extends Component {
                     }}
                   >
                     (855) 338-2733
-                  </Button>
+                  </Button> 
                 </li>
               </ul>
             </div>
@@ -352,22 +349,22 @@ class App extends Component {
                         onChange={(v) => {
                           // this.handleChange(v);
                           this.setState({
+                            // postData: {
+                            //   ...this.state.postData,
+                            //   own_or_rent: v,
+                            //   jornaya_lead_id: document.getElementById(
+                            //     "jornaya_lead_id"
+                            //   ).value,
+                            //   trusted_form_cert_id: document.getElementById(
+                            //     "trusted_form_cert_id_0"
+                            //   )
+                            // },
                             postData: {
                               ...this.state.postData,
                               own_or_rent: v,
-                              jornaya_lead_id: document.getElementById(
-                                "jornaya_lead_id"
-                              ).value
-                                ? document.getElementById("jornaya_lead_id")
-                                    .value
-                                : null,
-                              trusted_form_cert_id: document.getElementById(
-                                "trusted_form_cert_id_0"
-                              )
-                                ? document.getElementById(
-                                    "trusted_form_cert_id_0"
-                                  ).value
-                                : null,
+
+                              jornay_lead_id: document.getElementById("leadid_token").value,
+                              trusted_form_cert_id: document.getElementById("trusted_form_cert_id_0").value,
                             },
                           });
                           console.log(
