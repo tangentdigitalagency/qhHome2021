@@ -4,7 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 import "./App.css";
 import Grid from "@material-ui/core/Grid";
-import Logo from "./Assets/logoq.png";
+import Logo from "./Assets/logo.png";
 import { Button, Typography } from "antd";
 import {
   BrowserRouter as Router,
@@ -34,7 +34,7 @@ class App extends Component {
       state: "NY",
       //extra entries
       //SRC:"test",
-      Landing_Page: "quantumassurance.com",
+      Landing_Page: "quotehound.com",
       IP_Address: "",
       lp_s1: 101,
       lp_s2: 102,
@@ -723,7 +723,7 @@ class App extends Component {
                 <Typography
                   style={{ fontSize: "15px", color: "rgb(166, 166, 166)" }}
                 >
-                  @ 2020 Quantum Assurance
+                  @ 2020 Quotehound
                 </Typography>
               </Grid>
               <Grid item lg={6} xs={0} />
